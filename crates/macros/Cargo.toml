@@ -1,0 +1,24 @@
+[package]
+name = "literalize_macros"
+version = "0.1.0"
+authors = ["Alpheus <contact@alphe.us>"]
+edition = "2024"
+rust-version = "1.95.0"
+description = """
+A library to build literal-based singleton types and values.
+"""
+readme = "README.md"
+homepage = "https://github.com/literalize/rust"
+repository = "https://github.com/literalize/rust"
+license = "MIT"
+keywords = ["literalize", "literal", "const", "singleton", "util"]
+categories = ["parser-implementations", "web-programming"]
+include = ["src/**", "Cargo.toml", "README.md"]
+
+[lib]
+proc-macro = true
+
+[dependencies]
+syn = { workspace = true }
+quote = { workspace = true }
+proc-macro2 = { workspace = true }

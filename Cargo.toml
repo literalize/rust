@@ -1,0 +1,19 @@
+[workspace]
+resolver = "3"
+members = ["crates/core", "crates/macros", "test"]
+
+[workspace.dependencies]
+
+# Workspace
+literalize = { path = "crates/core" }
+literalize_macros = { path = "crates/macros" }
+
+# Package
+serde = { version = "^1.0.0" }
+serde_json = { version = "^1.0.0" }
+utoipa = { version = "^5.0.0" }
+
+# proc-macro
+syn = { version = "^2.0.0", features = ["full", "extra-traits"] }
+quote = { version = "^1.0.0" }
+proc-macro2 = { version = "^1.0.0" }

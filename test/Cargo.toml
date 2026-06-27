@@ -1,0 +1,20 @@
+[package]
+name = "test"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+literalize = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+utoipa = { workspace = true }
+
+[features]
+serde = ["literalize/serde"]
+utoipa = ["literalize/utoipa"]
+all = ["serde", "utoipa"]
+default = ["all"]

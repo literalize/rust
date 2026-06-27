@@ -1,0 +1,34 @@
+[package]
+name = "literalize"
+version = "0.1.0"
+authors = ["Alpheus <contact@alphe.us>"]
+edition = "2024"
+rust-version = "1.95.0"
+description = """
+A library to build literal-based singleton types and values
+"""
+readme = "README.md"
+homepage = "https://github.com/literalize/rust"
+repository = "https://github.com/literalize/rust"
+license = "MIT"
+keywords = ["literalize", "literal", "const", "singleton", "util"]
+categories = ["parser-implementations", "web-programming"]
+include = ["src/**", "Cargo.toml", "README.md"]
+
+[package.metadata.docs.rs]
+features = ["all"]
+
+[dependencies]
+
+# Macros
+literalize_macros = { workspace = true }
+
+# Package
+serde = { workspace = true, optional = true }
+utoipa = { workspace = true, optional = true }
+
+[features]
+default = []
+serde = ["dep:serde"]
+utoipa = ["dep:utoipa"]
+all = ["serde", "utoipa"]
