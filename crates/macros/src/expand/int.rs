@@ -116,6 +116,52 @@ pub(crate) fn expand_int(
 
     let common: TokenStream2 = default_debug(name);
 
+    let serde_impl: TokenStream2 = if crate::utils::features::SERDE {
+        quote! {
+            impl<'de> ::serde::Deserialize<'de> for #name {
+                fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+                where
+                    D: ::serde::Deserializer<'de>,
+                {
+                    deserializer
+                        .deserialize_any(::literalize::serde::int::MustBeIntVisitor::<#ty> {
+                            expected: Self::VALUE,
+                        })
+                        .map(|()| Self)
+                }
+            }
+
+            impl ::serde::Serialize for #name {
+                fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+                where
+                    S: ::serde::Serializer,
+                {
+                    serializer.#serialize_ident(**self)
+                }
+            }
+        }
+    } else {
+        TokenStream2::new()
+    };
+
+    let utoipa_impl: TokenStream2 = if crate::utils::features::UTOIPA {
+        quote! {
+            impl ::utoipa::PartialSchema for #name {
+                fn schema() -> ::utoipa::openapi::RefOr<::utoipa::openapi::schema::Schema> {
+                    ::utoipa::openapi::schema::ObjectBuilder::new()
+                        .schema_type(::utoipa::openapi::schema::Type::#schema_type)
+                        .enum_values(Some([Self::VALUE]))
+                        .build()
+                        .into()
+                }
+            }
+
+            impl ::utoipa::ToSchema for #name {}
+        }
+    } else {
+        TokenStream2::new()
+    };
+
     Ok(quote! {
         impl #name {
             pub const VALUE: #ty = #lit;
@@ -131,42 +177,8 @@ pub(crate) fn expand_int(
 
         #common
 
-        #[cfg(feature = "serde")]
-        impl<'de> ::serde::Deserialize<'de> for #name {
-            fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-            where
-                D: ::serde::Deserializer<'de>,
-            {
-                deserializer
-                    .deserialize_any(::literalize::serde::int::MustBeIntVisitor::<#ty> {
-                        expected: Self::VALUE,
-                    })
-                    .map(|()| Self)
-            }
-        }
+        #serde_impl
 
-        #[cfg(feature = "serde")]
-        impl ::serde::Serialize for #name {
-            fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-            where
-                S: ::serde::Serializer,
-            {
-                serializer.#serialize_ident(**self)
-            }
-        }
-
-        #[cfg(feature = "utoipa")]
-        impl ::utoipa::PartialSchema for #name {
-            fn schema() -> ::utoipa::openapi::RefOr<::utoipa::openapi::schema::Schema> {
-                ::utoipa::openapi::schema::ObjectBuilder::new()
-                    .schema_type(::utoipa::openapi::schema::Type::#schema_type)
-                    .enum_values(Some([Self::VALUE]))
-                    .build()
-                    .into()
-            }
-        }
-
-        #[cfg(feature = "utoipa")]
-        impl ::utoipa::ToSchema for #name {}
+        #utoipa_impl
     })
 }

@@ -42,7 +42,7 @@ enum ErrorCode {
 
 - `serde` - Implement `Deserialize` and `Serialize` from [`serde`](https://crates.io/crates/serde).
 - `utoipa` - Implement `ToSchema` from [`utoipa`](https://crates.io/crates/utoipa).
-- `all` - Enable both `serde` and `utoipa`.
+- `all` - Enable all features.
 
 ## Contributing
 

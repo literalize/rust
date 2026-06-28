@@ -8,13 +8,7 @@ publish = false
 path = "src/lib.rs"
 
 [dependencies]
-literalize = { workspace = true }
+literalize = { workspace = true, features = ["all"] }
 serde = { workspace = true }
 serde_json = { workspace = true }
 utoipa = { workspace = true }
-
-[features]
-serde = ["literalize/serde"]
-utoipa = ["literalize/utoipa"]
-all = ["serde", "utoipa"]
-default = ["all"]
