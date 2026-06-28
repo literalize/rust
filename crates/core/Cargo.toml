@@ -29,6 +29,6 @@ utoipa = { workspace = true, optional = true }
 
 [features]
 default = []
-serde = ["dep:serde"]
-utoipa = ["dep:utoipa"]
+serde = ["dep:serde", "literalize_macros/serde"]
+utoipa = ["dep:utoipa", "literalize_macros/utoipa"]
 all = ["serde", "utoipa"]
