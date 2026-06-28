@@ -36,10 +36,6 @@ typos:
 
 # Lint code
 lint:
-    cargo check
-
-# Lint code with clippy
-clippy:
     cargo clippy
 
 # Run test for doc
@@ -57,7 +53,6 @@ check:
     just ls-lint
     just typos
     just lint
-    just clippy
     just test-doc
     just test
 
