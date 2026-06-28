@@ -12,7 +12,7 @@ cargo add literalize
 
 ## Usage
 
-Apply the `literal` attribute to a unit struct with a string, integer, float, or boolean literal.
+Apply the `literal` attribute to a struct with a string, integer, float, or boolean literal.
 
 ```rust
 use literalize::literal;
@@ -21,21 +21,13 @@ use literalize::literal;
 struct NotFoundErrorCode;
 
 #[literal(404)]
-struct NotFoundHttpStatusCode;
+struct HttpNotFound;
 
 #[literal(3.14)]
-struct PiApprox;
+struct Pi;
 
 #[literal(true)]
-struct FeatureEnabled;
-```
-
-Each generates a zero-sized singleton type with an inherent `VALUE` constant, `Default`, `Deref`, and `Debug` impls. Nest them in enums to build tagged constant sets:
-
-```rust
-enum ErrorCode {
-    NotFound(NotFoundErrorCode),
-}
+struct LiteralTrue;
 ```
 
 ## Features

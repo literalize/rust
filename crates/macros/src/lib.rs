@@ -6,15 +6,13 @@ use syn::{ItemStruct, Lit, parse_macro_input};
 
 /// Build a literal-based singleton type and value.
 ///
-/// Currently support string, bool, int, float.
-///
 /// ## Example
 ///
 /// ```rust,ignore
 /// use literalize::literal;
 ///
 /// #[literal("not_found")]
-/// struct NotFoundErrorCode;
+/// struct NotFound;
 /// ```
 #[proc_macro_attribute]
 pub fn literal(

@@ -1,18 +1,30 @@
 //! A library to build literal-based singleton types and values.
 //!
-//! ## Example
+//! ## Usage
 //!
-//! ```
+//! Apply the `literal` attribute to a struct with a string, integer, float, or boolean literal.
+//!
+//! ```rust
 //! use literalize::literal;
 //!
 //! #[literal("not_found")]
-//! struct NotFoundErrorCode;
+//! struct NotFound;
+//!
+//! #[literal(404)]
+//! struct HttpNotFound;
+//!
+//! #[literal(3.14)]
+//! struct Pi;
+//!
+//! #[literal(true)]
+//! struct LiteralTrue;
 //! ```
 //!
 //! ## Features
 //!
-//! - `serde` - Implement [`Deserialize`](https://docs.rs/serde/latest/serde/trait.Deserialize.html) and [`Serialize`](https://docs.rs/serde/latest/serde/trait.Serialize.html) traits from [`serde`](https://docs.rs/serde/latest/serde/).
-//! - `utoipa` - Implement [`ToSchema`](https://docs.rs/utoipa/latest/utoipa/trait.ToSchema.html) trait from [`utoipa`](https://docs.rs/utoipa/latest/utoipa/).
+//! - `serde` - Implement `Deserialize` and `Serialize` from [`serde`](https://crates.io/crates/serde).
+//! - `utoipa` - Implement `ToSchema` from [`utoipa`](https://crates.io/crates/utoipa).
+//! - `all` - Enable all features.
 
 #[cfg(feature = "serde")]
 pub mod serde;
