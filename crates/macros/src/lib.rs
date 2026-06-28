@@ -1,8 +1,8 @@
-use proc_macro::TokenStream;
-use syn::{ItemStruct, Lit, parse_macro_input};
-
 mod expand;
 mod utils;
+
+use proc_macro::TokenStream;
+use syn::{ItemStruct, Lit, parse_macro_input};
 
 /// Build a literal-based singleton type and value.
 ///
