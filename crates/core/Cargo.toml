@@ -1,6 +1,6 @@
 [package]
 name = "literalize"
-version = "0.1.0"
+version.workspace = true
 authors = ["Alpheus <contact@alphe.us>"]
 edition = "2024"
 rust-version = "1.95.0"

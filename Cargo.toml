@@ -2,11 +2,14 @@
 resolver = "3"
 members = ["crates/core", "crates/macros", "test"]
 
+[workspace.package]
+version = "0.1.0"
+
 [workspace.dependencies]
 
 # Workspace
-literalize = { path = "crates/core" }
-literalize_macros = { path = "crates/macros" }
+literalize = { version = "0.1.0", path = "crates/core" }
+literalize_macros = { version = "0.1.0", path = "crates/macros" }
 
 # Macros
 syn = { version = "^2.0.0", features = ["full", "extra-traits"] }
