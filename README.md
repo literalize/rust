@@ -18,7 +18,7 @@ Apply the `literal` attribute to a struct with a string, integer, float, or bool
 use literalize::literal;
 
 #[literal("not_found")]
-struct NotFoundErrorCode;
+struct NotFound;
 
 #[literal(404)]
 struct HttpNotFound;
