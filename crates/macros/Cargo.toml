@@ -15,6 +15,9 @@ keywords = ["literalize", "literal", "const", "singleton", "util"]
 categories = ["parser-implementations", "web-programming"]
 include = ["src/**", "Cargo.toml", "README.md"]
 
+[package.metadata.docs.rs]
+features = ["all"]
+
 [lib]
 proc-macro = true
 
@@ -24,5 +27,7 @@ quote = { workspace = true }
 proc-macro2 = { workspace = true }
 
 [features]
+default = []
 serde = []
 utoipa = []
+all = ["serde", "utoipa"]
