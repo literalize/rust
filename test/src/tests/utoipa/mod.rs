@@ -6,6 +6,7 @@ use crate::fixtures::int_suffix;
 
 mod bool;
 mod float;
+mod generic;
 mod int;
 mod str;
 
@@ -16,6 +17,7 @@ mod str;
     crate::fixtures::int::HttpStatusCode,
     crate::fixtures::float::EulersNumber,
     crate::fixtures::bool::FeatureEnabled,
+    crate::fixtures::generic::ErrorResponse,
     int_inference::I32Max,
     int_inference::AboveI32Max,
     int_inference::I32Min,
