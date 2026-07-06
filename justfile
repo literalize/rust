@@ -61,5 +61,5 @@ publish:
 
 # Clean
 clean:
-    cargo clean
     pnpm clean
+    cargo clean
