@@ -27,8 +27,7 @@ ls-lint:
     ls-lint -config ./.ls-lint.yaml
 
 # Lint code with ls-lint
-lslint:
-    just ls-lint
+lslint: ls-lint
 
 # Lint code with typos
 typos:
@@ -48,13 +47,7 @@ test:
     cargo test -p {{tst}} -- --nocapture
 
 # Check code
-check:
-    just fmt
-    just ls-lint
-    just typos
-    just lint
-    just test-doc
-    just test
+check: fmt ls-lint typos lint test-doc test
 
 # Publish package as dry-run
 publish-try:
