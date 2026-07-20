@@ -12,7 +12,7 @@ literalize = { version = "0.1.0", path = "crates/core" }
 literalize_macros = { version = "0.1.0", path = "crates/macros" }
 
 # Macros
-syn = { version = "^2.0.0", features = ["full", "extra-traits"] }
+syn = { version = "^3.0.0", features = ["full", "extra-traits"] }
 quote = { version = "^1.0.0" }
 proc-macro2 = { version = "^1.0.0" }
 
